@@ -1,20 +1,15 @@
+import { getTabuleiro } from "./discos.js";
+
 const eH1 = document.querySelector("h1");
 eH1.textContent = "Olá, DCC202!";
 
 const eTabuleiro = criaTabuleiro();
 document.body.appendChild(eTabuleiro);
 
+const tabuleiro = getTabuleiro();
 for (let i = 0; i < 7; i++) {
-  const eDisco = criaDiscoTabuleiro();
+  const eDisco = criaDiscoTabuleiro(tabuleiro[i]);
   eTabuleiro.appendChild(eDisco);
-
-  if (i < 3) {
-    eDisco.dataset.cor = "branco";
-  } else if (i > 3) {
-    eDisco.dataset.cor = "preto";
-  } else {
-    eDisco.dataset.cor = "transparente";
-  }
 }
 
 function criaTabuleiro() {
@@ -23,8 +18,9 @@ function criaTabuleiro() {
   return novoTabuleiro;
 }
 
-function criaDiscoTabuleiro() {
+function criaDiscoTabuleiro(cor) {
   const novoDisco = document.createElement("div");
   novoDisco.classList.add("discoTabuleiro");
+  novoDisco.dataset.cor = cor;
   return novoDisco;
 }
