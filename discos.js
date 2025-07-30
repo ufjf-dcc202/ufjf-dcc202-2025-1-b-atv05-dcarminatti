@@ -24,9 +24,10 @@ export function getTabuleiro() {
 }
 
 function mover(origem, destino) {
-  if (tabuleiro[destino] !== "transparente") return;
   const deslocamento = destino - origem;
-  if (deslocamento > 2 || deslocamento < -2) return;
+  if (Math.abs(deslocamento) > 2 || tabuleiro[destino] !== "transparente")
+    return;
+
   tabuleiro[destino] = tabuleiro[origem];
   tabuleiro[origem] = "transparente";
 }
